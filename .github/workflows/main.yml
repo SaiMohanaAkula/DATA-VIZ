@@ -1,0 +1,21 @@
+name: Create Tag with Specific Name and Message
+
+on:
+  push:
+    branches:
+      - main  # Change to your default branch if necessary
+
+jobs:
+  create_tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Tag
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git tag -a files -m "small files"  # Tag name is 'files', message is 'small files'
+          git push origin files
+
